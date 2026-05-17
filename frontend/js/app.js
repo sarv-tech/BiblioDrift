@@ -1792,6 +1792,21 @@ class GenreManager {
     async fetchBooks(genre) {
         if (!this.booksGrid) return;
 
+        const genreQueries = {
+            romance: 'subject:romance romance love story',
+            mystery: 'subject:mystery detective suspense thriller',
+            fiction: 'subject:fiction literary fiction bestselling',
+            crime: 'subject:crime detective mystery true crime',
+            fantasy: 'subject:fantasy magic epic adventure',
+            thriller: 'subject:thriller suspense action mystery',
+            biography: 'subject:biography memoir inspirational life story',
+            'self-help': 'subject:self-help motivation personal growth wellness',
+            science: 'subject:science technology popular science innovation',
+            history: 'subject:history historical nonfiction events'
+        };
+
+        const searchQuery = genreQueries[genre] || `subject:${genre}`;
+
         // Show loading skeletons
         if (window.renderer) {
             window.renderer.renderSkeletons(this.booksGrid, 10);
@@ -1805,7 +1820,7 @@ class GenreManager {
         }
 
         try {
-            const data = await window.GoogleBooksClient.fetchVolumes(`subject:${genre}`, { maxResults: 20, extraParams: '&langRestrict=en&orderBy=relevance' });
+            const data = await window.GoogleBooksClient.fetchVolumes(searchQuery, { maxResults: 20, extraParams: '&langRestrict=en&orderBy=relevance' });
 
             const items = data.items || [];
             if (items.length > 0) {
