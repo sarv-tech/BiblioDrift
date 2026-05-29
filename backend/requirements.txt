@@ -38,3 +38,5 @@ networkx
 sympy
 textblob==0.19.0
 Flask-SocketIO
+tenacity
+python-magic
