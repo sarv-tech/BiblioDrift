@@ -3012,7 +3012,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             { type: 'query', query: 'subject:fiction', elementId: 'row-fiction', title: 'General Fiction', subtitle: 'Stories for everyone', icon: 'fa-book-open' },
             { type: 'query', query: 'subject:thriller suspense', elementId: 'row-thriller', title: 'Thriller & Suspense', subtitle: 'Edge of Your Seat', icon: 'fa-skull' }
         ];
-        ];
 
         (async () => {
             try {
